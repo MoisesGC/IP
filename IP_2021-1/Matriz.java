@@ -69,6 +69,40 @@ public class Matriz{
         	}
 	}
 	
+	public void imprime(){
+		int contLinhas, contColunas;
+		for(contLinhas = 0; contLinhas < this.getNumLinhas(); contLinhas++){
+			for(contColunas = 0; contColunas < this.getNumColunas(); contColunas++){
+			         System.out.print(" " + this.getElemento(contLinhas,contColunas));
+			}
+			System.out.println();
+        	}
+	}
+	
+	public void imprimeTransposta(){
+		int contLinhas, contColunas;
+		for(contColunas = 0; contColunas < this.getNumColunas(); contColunas++){
+			for(contLinhas = 0; contLinhas < this.getNumLinhas(); contLinhas++){
+			         System.out.print(" " + this.getElemento(contLinhas,contColunas)); // pega a posicao transposta
+			}
+			System.out.println();
+        	}
+	}
+	
+
+	public void transposicaoDeValores(){
+		int contLinhas, contColunas;
+		
+		if(this.getNumColunas() == this.getNumLinhas()){  // evitando o caos...
+			for(contLinhas = 0; contLinhas < this.getNumLinhas(); contLinhas++){
+				for(contColunas = contLinhas+1; contColunas < this.getNumColunas(); contColunas++){
+					 this.troca(contLinhas,contColunas,contColunas,contLinhas);				  
+				}
+			}
+		}
+	}
+	
+	
 	
 	public boolean busca(int chave){
 		boolean resposta;
@@ -89,16 +123,6 @@ public class Matriz{
 		return resposta;	
 	}
 	
-	
-	public void imprime(){
-		int contLinhas, contColunas;
-		for(contLinhas = 0; contLinhas < this.getNumLinhas(); contLinhas++){
-			for(contColunas = 0; contColunas < this.getNumColunas(); contColunas++){
-			         System.out.print(" " + this.getElemento(contLinhas,contColunas));
-			}
-			System.out.println();
-        	}
-	}
 	
 	private void troca(int indexi1, int indexj1, int indexi2, int indexj2){
 		int temp;
@@ -133,7 +157,6 @@ public class Matriz{
 				this.troca(indi1,indj1,indi2,indj2);
 			}
 		}
-
 
 	}
 	
