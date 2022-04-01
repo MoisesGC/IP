@@ -241,6 +241,38 @@ public class Matriz{
 		}
 	}	
 	
+	public void copiaMatrizMaiorParaMenor(Matriz matA, matriz matB, int linhaProib, int colunaProib){
+	
+	
+	}
+	
+	
+	public int determinante(){
+		int cont,resposta,ordem,parcial;
+		Matriz tempMat;
+		
+		ordem = this.getNumLinhas();
+		
+		if(ordem > 1){
+			tempMat = new Matriz(ordem -1, ordem -1);  
+			resposta = 0; 
+			for(cont=0; cont < ordem; cont++){
+				this.copiaMatrizMaiorParaMenor(this,tempMat,0,cont);
+			 	parcial = exp(-1,cont) * this.getElemento(0,cont) * tempMat.determinante();
+			 	resposta = resposta + parcial;
+			 
+			}
+		}
+		else{	
+			resposta = this.getElemento(0,0);
+		}
+		
+		return resposta;
+	
+	
+	}
+	
+	
 	
 }	
 

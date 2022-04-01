@@ -2,34 +2,17 @@ public class Main{
 
 	public static void main(String args[]){	
 	
-		Vetor lista1,lista2;
-		Matriz mat1;
-		Fibo numFibo;
-		Fatorial numFato;
-		long start, delay;
+		String temp;
+	
+		FileOps arquivo = new FileOps("temp.txt");
+		arquivo.cria();
+		arquivo.escreve("Todo teste é maneiro!");
+		temp = arquivo.leitura();
+		arquivo.imprimeTokens(temp," ");
 		
+		System.out.println(temp);
 		
-		mat1 = new Matriz(6,6);
-		mat1.inicializaOrdenado();
-		mat1.shuffle();
-		mat1.imprime();	
-		mat1.ordena();
-		mat1.imprime();
-		
-		//mat1.imprimeTransposta();
-		//System.out.println();
-		//mat1.transposicaoDeValores();	
-		//System.out.println();
-		//mat1.imprime();
-		
-		//System.out.println(mat1.busca(7));
-		
-		//mat1.inicializaOrdenado();
-		//mat1.shuffle();
-		//mat1.imprime();
-		//mat1.ordena();
-		
-		//mat1.imprime();	
+	
 				
 	}		
 
