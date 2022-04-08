@@ -1,5 +1,5 @@
 import java.util.Random;
-
+import java.lang.Math;
 
 public class Matriz{
 
@@ -241,14 +241,31 @@ public class Matriz{
 		}
 	}	
 	
-	public void copiaMatrizMaiorParaMenor(Matriz matA, matriz matB, int linhaProib, int colunaProib){
+	public void copiaMatrizMaiorParaMenor(Matriz matA, Matriz matB, int linhaProib, int colunaProib){
 	
-	
+		int contLinhas, contColunas, contLMenor,contCMenor,temp;
+		
+		contLMenor=0;
+		for(contLinhas = 0; contLinhas < matA.getNumLinhas(); contLinhas++){
+			if (contLinhas != linhaProib){	
+				contCMenor = 0;		
+				for(contColunas = 0; contColunas < matA.getNumColunas(); contColunas++){
+					 if (contColunas != colunaProib) {
+					 	temp = matA.getElemento(contLinhas,contColunas);
+					 	matB.setElemento(contLMenor,contCMenor,temp);
+					 	//System.out.print(contLinhas +"-"+ contColunas);
+					 	//System.out.println(" -> " + contLMenor +"-"+ contCMenor);
+					 	contCMenor = contCMenor + 1;
+					 }
+				}
+				contLMenor = contLMenor + 1;
+			}
+        	}	
 	}
 	
 	
 	public int determinante(){
-		int cont,resposta,ordem,parcial;
+		int cont,resposta,ordem,parcial,sinal,cofator,detTemp;
 		Matriz tempMat;
 		
 		ordem = this.getNumLinhas();
@@ -258,18 +275,24 @@ public class Matriz{
 			resposta = 0; 
 			for(cont=0; cont < ordem; cont++){
 				this.copiaMatrizMaiorParaMenor(this,tempMat,0,cont);
-			 	parcial = exp(-1,cont) * this.getElemento(0,cont) * tempMat.determinante();
+				
+			 	sinal = (int)Math.pow(-1,cont);
+			 	cofator = this.getElemento(0,cont);
+			 	detTemp = tempMat.determinante();
+			 	
+			 	//tempMat.imprime();
+			 	//System.out.println("Sinal: "+ sinal + " Cofator:"+ cofator + " detTemp:" + detTemp);			 	
+			 	parcial = sinal*cofator*detTemp;
 			 	resposta = resposta + parcial;
 			 
 			}
 		}
 		else{	
-			resposta = this.getElemento(0,0);
-		}
-		
+			resposta = this.getElemento(0,0);		
+			//resposta = (this.getElemento(0,0)*this.getElemento(1,1)) - (this.getElemento(0,1)*this.getElemento(1,0));
+			
+		}		
 		return resposta;
-	
-	
 	}
 	
 	
