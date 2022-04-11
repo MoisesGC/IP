@@ -1,3 +1,8 @@
+import java.io.IOException;
+import java.io.InputStreamReader; 
+import java.util.Scanner;
+
+
 public class BatalhaNaval{
 
 	private Jogador player1;
@@ -11,7 +16,7 @@ public class BatalhaNaval{
 		this.setPlayer1(playerP1);
 		this.setMapaP1(mapaPly1);
 		this.setPlayer2(playerP2);
-		this.setMapaP1(mapaPly2);
+		this.setMapaP2(mapaPly2);
 	}
 	
 	public void setPlayer1(Jogador play){
@@ -72,7 +77,7 @@ public class BatalhaNaval{
 		return true;
 	}
 	
-	
+	//// nova versao
 	public void iniciaBatalha(){
 		boolean continuaBatalha;
 		System.out.println("Iniciando a batalha..");
@@ -80,25 +85,70 @@ public class BatalhaNaval{
 		
 		while(continuaBatalha){
 
-			continuaBatalha = this.executarJogada(this.getPlayer1(), this.getMapaP1(), this.getMapaP2());
+			continuaBatalha = this.executarJogada(this.getPlayer1(), this.getMapaP1(), this.getPlayer2(), this.getMapaP2());
 			if(continuaBatalha) {
-				continuaBatalha = this.executarJogada(this.getPlayer2(), this.getMapaP2(), this.getMapaP1());
+				continuaBatalha = this.executarJogada(this.getPlayer2(), this.getMapaP2(), this.getPlayer1(), this.getMapaP1());
 			}
 			// ideia - contar a quantidade de rodadas
+			continuaBatalha = false;
 		}
 		System.out.println("Batalha Finalizada..");			
 	}
 	
-	public boolean executarJogada(Jogador player, Mapa mapaPlayer, Mapa mapaAdversary){
-		boolean statusJogo;
-		// atualizar a tela
-		// le a jogada do player
-		// atualiza a tela
-		// avaliar a jogada encerrou o vez do jogador ou se encerrou o jogo
-		statusJogo = false;
+	// nova versao
+	public boolean executarJogada(Jogador player, Mapa mapaPlayer, Jogador adversario, Mapa mapaAdversario){
+		boolean statusJogo,acertou;
+		int linha,coluna;
+		Scanner ler = new Scanner(System.in);
 		
+		acertou = true;
+		while(acertou){
+			this.atualizaTela(player, mapaPlayer, adversario, mapaAdversario);
+			System.out.println();
+			System.out.print("Digite a coordenada da linha:");
+			linha = ler.nextInt();
+			System.out.print("Digite a coordenada da coluna:");
+			coluna = ler.nextInt();	
+			switch(mapaAdversario.getElemento(linha,coluna)){
+            			case 'O':
+					System.out.println("---- Agua!--------");
+					mapaAdversario.setElemento(linha,coluna,'F');
+					acertou = false;
+					break;
+				default:
+					System.out.println("---  Acertou! ---- ");
+					mapaAdversario.setElemento(linha,coluna,'H');
+					break;
+
+        		}
+			this.atualizaTela(player, mapaPlayer, adversario, mapaAdversario);
+		}	
+		statusJogo = true;	
 		return statusJogo;
 
+	}
+	
+
+	
+	// nova versao
+	private void limpaTela(){
+		try {
+                	new ProcessBuilder("clear").inheritIO().start().waitFor();      // Para linux
+        	} 
+        	catch(Exception e) {
+            		e.printStackTrace();
+        	}
+	}
+	
+	// nova versao
+	public void atualizaTela(Jogador player, Mapa mapaPlayer, Jogador adversario, Mapa mapaAdversario){
+		int cont;
+		this.limpaTela();
+		System.out.println("Status Adversario: " + adversario.getNome());
+		mapaAdversario.imprime();
+		System.out.println();
+		System.out.println("Status Jogador: " + player.getNome());
+		mapaPlayer.imprime();
 	}
 	
 	

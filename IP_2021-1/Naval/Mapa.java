@@ -6,9 +6,10 @@ public class Mapa{
 	
 
 	Mapa(){
-		this.setNumLinhas(5);
-		this.setNumColunas(5);
+		this.setNumLinhas(10);
+		this.setNumColunas(10);
 		mat = new char[this.getNumLinhas()][this.getNumColunas()];
+		this.inicializa('O');
 	}
 	
 	Mapa(int numLin , int numCol){
@@ -55,7 +56,10 @@ public class Mapa{
 	
 	public void imprime(){
 		int contLinhas, contColunas;
+		System.out.println("X- 0 1 2 3 4 5 6 7 8 9");
+		System.out.println("-");
 		for(contLinhas = 0; contLinhas < this.getNumLinhas(); contLinhas++){
+			System.out.print(contLinhas + " ");
 			for(contColunas = 0; contColunas < this.getNumColunas(); contColunas++){
 			         System.out.print(" " + this.getElemento(contLinhas,contColunas));
 			}

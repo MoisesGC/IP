@@ -1,3 +1,4 @@
+import java.io.IOException;
 public class Main{
 
 	public static void main(String[] args){
@@ -16,12 +17,14 @@ public class Main{
 		mapa1 = new Mapa();
 		mapa2 = new Mapa();
 		
+		
 		jogo1 = new BatalhaNaval(player1, mapa1, player2, mapa2);
 		
 		jogo1.inicializarMapas();
 		jogo1.iniciaBatalha();
 		jogo1.imprimeResultado();
-		
+
+      
 	
 	}
 
