@@ -73,7 +73,18 @@ public class BatalhaNaval{
 	}
 	
 	private boolean inicializaMapaJogador(Jogador player, Mapa mapa){
-		System.out.println("Inicializando o mapa do jogador: " + player.getNome());	
+		System.out.println("Inicializando o mapa do jogador: " + player.getNome());
+		Scanner ler = new Scanner(System.in);
+		int linha,coluna;
+		this.atualizaTela(player,mapa);
+		System.out.println("Inserindo navio no mapa..");
+		System.out.print("Digite a coordenada da linha:");
+		linha = ler.nextInt();
+		System.out.print("Digite a coordenada da coluna:");
+		coluna = ler.nextInt();	
+		mapa.setElemento(linha,coluna,'5');
+		this.atualizaTela(player,mapa);
+			
 		return true;
 	}
 	
@@ -150,6 +161,15 @@ public class BatalhaNaval{
 		System.out.println("Status Jogador: " + player.getNome());
 		mapaPlayer.imprime();
 	}
+	
+	public void atualizaTela(Jogador player, Mapa mapaPlayer){
+		int cont;
+		this.limpaTela();
+		System.out.println();
+		System.out.println("Status Jogador: " + player.getNome());
+		mapaPlayer.imprime();
+	}
+	
 	
 	
 	public void imprimeResultado(){
