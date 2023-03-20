@@ -2,7 +2,47 @@ import java.util.Scanner;
 
 public class Main{
 
-        public static void main(String[] args){
+	public static void main(String[] args){
+		System.out.println("Teste do Objeto Vetor");
+        	Scanner ler = new Scanner(System.in);
+        	
+        	Vetor vet = new Vetor(10);
+        	
+        	vet.inicializaRandom();
+        	vet.imprime();
+        	
+        	int cont,num,indMenor,temp;
+        	indMenor = 0;
+        	cont = 1;	
+        	while(cont < 10){
+        		if(vet.getElemento(cont) < vet.getElemento(indMenor)){
+        			indMenor = cont;
+        		}      		
+			cont++;
+        	}
+        	
+        	System.out.println(vet.getElemento(indMenor));
+      		System.out.println(indMenor);
+      		
+      		temp = vet.getElemento(0); 
+      		vet.setElemento(0, vet.getElemento(indMenor));  
+      		vet.setElemento(indMenor,temp); 
+      		
+      		vet.imprime();
+      		
+      		/*int a,b,temp;
+      		
+      		a = 5;
+      		b = 3;
+      		
+      		temp = vet.getElemento(0); //vet[a];
+      		vet.setElemento(0, vet.getElemento(indMenor));  //vet[a] = vet[b];
+      		vet.setElemento(indMenor,temp); //vet[b] = temp;*/
+      		
+	
+	}
+
+        public static void main2(String[] args){
         
         	System.out.println("Teste do Objeto Vetor");
         	Scanner ler = new Scanner(System.in);
