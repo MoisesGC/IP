@@ -1,6 +1,5 @@
-public class Cliente{
+public class Cliente extends Pessoa{
 
-	private String nome;
 	private int idade;
 
 	Cliente(String valorN, int valorI){
@@ -8,14 +7,6 @@ public class Cliente{
 		this.setIdade(valorI);
 	}
 	
-	
-	public String getNome(){
-		return this.nome;
-	}
-	
-	public void setNome(String novo){
-		this.nome = novo;
-	}
 	
 	public int getIdade(){
 		return this.idade;
@@ -65,6 +56,10 @@ public class Cliente{
 	public void imprime(){
 		System.out.println(this.getNome()+" "+ this.getIdade());
 	}
-	
+
+
+	public void digaSeuNome(){
+		System.out.println(" Bom dia, eu sou "  +  this.getNome());	
+	}	
 
 }
