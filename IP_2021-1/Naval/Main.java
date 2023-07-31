@@ -18,7 +18,7 @@ public class Main{
 		mapa2 = new Mapa();
 		
 		
-		jogo1 = new BatalhaNaval(player1, mapa1, player2, mapa2);
+		jogo1 = new BatalhaNaval(player1, mapa1, player2, mapa2,5);
 		
 		jogo1.inicializarMapas();
 		jogo1.iniciaBatalha();

@@ -10,13 +10,15 @@ public class BatalhaNaval{
 	private Mapa 	mapaP1;
 	private Mapa 	mapaP2;
 	private boolean mapasInicializados;
+	private int numNavios;
 	
 	
-	BatalhaNaval(Jogador playerP1, Mapa mapaPly1, Jogador playerP2, Mapa mapaPly2){
+	BatalhaNaval(Jogador playerP1, Mapa mapaPly1, Jogador playerP2, Mapa mapaPly2, int numPecasNavios){
 		this.setPlayer1(playerP1);
 		this.setMapaP1(mapaPly1);
 		this.setPlayer2(playerP2);
 		this.setMapaP2(mapaPly2);
+		this.setNumNavios(numPecasNavios);
 	}
 	
 	public void setPlayer1(Jogador play){
@@ -50,6 +52,14 @@ public class BatalhaNaval{
 		return this.mapaP2;
 	}
 	
+	private void setNumNavios(int valor) {
+		this.numNavios = valor;
+	}
+	
+	private int getNumNavios(){
+		return this.numNavios;
+	}
+	
 	private void setMapasInicializados(boolean state){
 		this.mapasInicializados = state;		
 	}
@@ -60,8 +70,10 @@ public class BatalhaNaval{
 	
 	public void inicializarMapas(){
 		boolean initOk1, initOk2;
-		System.out.println("Inicializando os mapas..");
+		this.transicaoJogo("Inicializando os mapas..",3);
+		this.transicaoJogador(this.getPlayer1());
 		initOk1 = this.inicializaMapaJogador(this.getPlayer1(),this.getMapaP1());
+		this.transicaoJogador(this.getPlayer2());
 		initOk2 = this.inicializaMapaJogador(this.getPlayer2(),this.getMapaP2());
 		this.setMapasInicializados((initOk1 && initOk2));
 		if (this.getMapasInicializados()){
@@ -73,75 +85,83 @@ public class BatalhaNaval{
 	}
 	
 	private boolean inicializaMapaJogador(Jogador player, Mapa mapa){
-		System.out.println("Inicializando o mapa do jogador: " + player.getNome());
 		Scanner ler = new Scanner(System.in);
 		int linha,coluna;
-		this.atualizaTela(player,mapa);
-		System.out.println("Inserindo navio no mapa..");
-		System.out.print("Digite a coordenada da linha:");
-		linha = ler.nextInt();
-		System.out.print("Digite a coordenada da coluna:");
-		coluna = ler.nextInt();	
-		mapa.setElemento(linha,coluna,'5');
-		this.atualizaTela(player,mapa);
-			
+		int contNavio;
+				
+		for(contNavio = 0; contNavio < this.getNumNavios(); contNavio++ ){
+			this.atualizaTela(player, mapa);
+			System.out.print("Insercao de Navio do Jogador " + player.getNome());
+			System.out.println();
+			System.out.print("Digite a coordenada da linha:");
+			linha = this.leituraValida(ler,0,mapa.getNumLinhas()-1);
+			System.out.print("Digite a coordenada da coluna:");
+			coluna = this.leituraValida(ler,0,mapa.getNumLinhas()-1);
+			mapa.setElemento(linha,coluna,mapa.getCodigoMapa(3));
+			System.out.println();	
+		}
 		return true;
 	}
 	
-	//// nova versao
+	private int leituraValida(Scanner scan, int lowLimit, int highLimit){
+		int entrada;
+		entrada = scan.nextInt();
+		while ((entrada < lowLimit) || (entrada > highLimit)) {
+			System.out.print("Coordenada Invalida.. digite novamente: ");
+			entrada = scan.nextInt();
+		}
+		return entrada;	
+	}
+	
 	public void iniciaBatalha(){
 		boolean continuaBatalha;
-		System.out.println("Iniciando a batalha..");
+		this.transicaoJogo("Iniciando a batalha..",3);
 		continuaBatalha = true;
 		
 		while(continuaBatalha){
-
+			this.transicaoJogador(this.getPlayer1());
 			continuaBatalha = this.executarJogada(this.getPlayer1(), this.getMapaP1(), this.getPlayer2(), this.getMapaP2());
+			
 			if(continuaBatalha) {
+				this.transicaoJogador(this.getPlayer2());
 				continuaBatalha = this.executarJogada(this.getPlayer2(), this.getMapaP2(), this.getPlayer1(), this.getMapaP1());
 			}
-			// ideia - contar a quantidade de rodadas
-			continuaBatalha = false;
 		}
-		System.out.println("Batalha Finalizada..");			
+		System.out.println("Batalha Finalizada..");	
+		this.delayTela(2);		
 	}
 	
-	// nova versao
 	public boolean executarJogada(Jogador player, Mapa mapaPlayer, Jogador adversario, Mapa mapaAdversario){
 		boolean statusJogo,acertou;
 		int linha,coluna;
+		String message;
 		Scanner ler = new Scanner(System.in);
-		
+		statusJogo = true;	
 		acertou = true;
-		while(acertou){
+		while(acertou && statusJogo){
 			this.atualizaTela(player, mapaPlayer, adversario, mapaAdversario);
 			System.out.println();
 			System.out.print("Digite a coordenada da linha:");
-			linha = ler.nextInt();
+			linha = this.leituraValida(ler,0,mapaPlayer.getNumLinhas()-1);
 			System.out.print("Digite a coordenada da coluna:");
-			coluna = ler.nextInt();	
-			switch(mapaAdversario.getElemento(linha,coluna)){
-            			case 'O':
-					System.out.println("---- Agua!--------");
-					mapaAdversario.setElemento(linha,coluna,'F');
-					acertou = false;
-					break;
-				default:
-					System.out.println("---  Acertou! ---- ");
-					mapaAdversario.setElemento(linha,coluna,'H');
-					break;
+			coluna = this.leituraValida(ler,0,mapaPlayer.getNumLinhas()-1);
+			acertou = mapaAdversario.tiro(linha,coluna);
+			if (acertou){
+				player.incrementaAcerto();
+				if (player.getAcertos() >= this.getNumNavios()){
+					statusJogo = false;
+				}	
+			}
 
-        		}
+			this.delayTela(2);
 			this.atualizaTela(player, mapaPlayer, adversario, mapaAdversario);
+			System.out.println();		
 		}	
-		statusJogo = true;	
+			
 		return statusJogo;
 
 	}
 	
-
-	
-	// nova versao
 	private void limpaTela(){
 		try {
                 	new ProcessBuilder("clear").inheritIO().start().waitFor();      // Para linux
@@ -151,12 +171,50 @@ public class BatalhaNaval{
         	}
 	}
 	
-	// nova versao
+	private void transicaoJogo(String mensagem, int segundosDelay){
+		int cont;
+		this.limpaTela();
+		for(cont=0; cont < 12; cont++){
+			System.out.println();
+		}
+		System.out.println(mensagem);
+		for(cont=0; cont < 12; cont++){
+			System.out.println();
+		}
+		
+		this.delayTela(segundosDelay);
+	}
+	
+	private void delayTela(int segundos){
+		try {
+  			Thread.sleep(segundos * 1000);
+		} catch (InterruptedException ex) {
+  			ex.printStackTrace();
+		}
+	}
+	
+	
+	private void transicaoJogador(Jogador player){
+		int cont;
+		Scanner ler = new Scanner(System.in);
+		this.limpaTela();
+		for(cont=0; cont < 12; cont++){
+			System.out.println();
+		}
+		System.out.println("Vez do jogador " + player.getNome());
+		for(cont=0; cont < 12; cont++){
+			System.out.println();
+		}
+		System.out.println("Aperte enter para confirmar:");
+		ler.nextLine();
+	}
+	
+	
 	public void atualizaTela(Jogador player, Mapa mapaPlayer, Jogador adversario, Mapa mapaAdversario){
 		int cont;
 		this.limpaTela();
 		System.out.println("Status Adversario: " + adversario.getNome());
-		mapaAdversario.imprime();
+		mapaAdversario.imprime(true);
 		System.out.println();
 		System.out.println("Status Jogador: " + player.getNome());
 		mapaPlayer.imprime();
@@ -170,11 +228,24 @@ public class BatalhaNaval{
 		mapaPlayer.imprime();
 	}
 	
-	
-	
-	public void imprimeResultado(){
+	public void imprimeResultado(){		
+		this.limpaTela();
+		
 		System.out.println("O resultado da Batalha:");
-	
+		System.out.println("Status: " + this.getPlayer1().getNome() + "  - Acertos: " + this.getPlayer1().getAcertos());
+		this.getMapaP1().imprime();
+		System.out.println();
+		System.out.println("Status: " + this.getPlayer2().getNome() + "  - Acertos: " + this.getPlayer2().getAcertos());
+		this.getMapaP2().imprime();
+		System.out.print("\nVENCEDOR: "); 
+		if (this.getPlayer1().getAcertos() > this.getPlayer2().getAcertos()){
+			System.out.println(this.getPlayer1().getNome());
+		}
+		else{
+			System.out.println(this.getPlayer2().getNome());
+		}
+		
+		
 	}
 	
 	
