@@ -1,6 +1,28 @@
+import java.util.Scanner;
+
 public class Main{
 
-	public static void main(String[] args){
+        public static void main(String[] args){
+        
+        	System.out.println("Teste de Objetos - Contasss");
+        	Scanner ler = new Scanner(System.in);
+		
+		Calculo calc = new Calculo();
+		int a,b;
+		
+		a = ler.nextInt();
+		b = ler.nextInt();
+		
+		
+		calc.imprimeSoma(a,b);
+		calc.imprimeMultiplicacao(a,b);
+		calc.imprimeDivisao(a,b);
+		calc.imprimeConversaoCelToFareh(30.0f);
+	
+        
+        }
+
+	public static void main01(String[] args){
 		
 		System.out.println("Teste de Objetos");
 		
@@ -15,14 +37,13 @@ public class Main{
 		aluno01.digaOi();
 		aluno01.digaBomDia();
 		aluno01.setNome("Fulano");
-		aluno01.digaSeuNome();
-			
+		aluno01.digaSeuNome();		
 		
 		aluno02 = new Aluno();
 		
 		aluno02.digaOi();
 		aluno02.digaBomDia();
-		aluno02.setNome("Criano");
+		aluno02.setNome("Cicrano");
 		aluno02.digaSeuNome();
 		
 		aluno03 = new Aluno();
@@ -40,6 +61,15 @@ public class Main{
 		aluno04.setNome("Ken");
 		aluno04.digaSeuNome();
 		
+		
+		aluno01.setMelhorAmigo(aluno04);
+		aluno01.digaONomeDoSeuMelhorAmigo();
+		
+		aluno04.setMelhorAmigo(aluno01);
+		aluno04.digaONomeDoSeuMelhorAmigo();		
+		aluno04.digaONomeDoSeuMelhorAmigo(aluno03);
+		
+		aluno04.contasAleatorias();	
 		
 	}
 	
