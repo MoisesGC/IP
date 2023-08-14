@@ -38,6 +38,9 @@ public class Triangulo{
 		return resp;
 	}
 	 
+	private boolean souTriangulo(){
+		return this.ehTriangulo(this.getLadoA(), this.getLadoB(), this.getLadoC());
+	} 
 	
 	public void identificaTriangulo(){
 	
@@ -47,22 +50,30 @@ public class Triangulo{
 		ldB  = this.getLadoB();
 		ldC  = this.getLadoC();
 		
-		if( this.ehTriangulo(ldA,ldB,ldC) ){
-		
-			System.out.println("Eh triangulo!");
-		
+		if(this.souTriangulo()){
+			System.out.print("Eh triangulo ");
+			if((ldA != ldB) && 
+			   (ldA != ldC) && 
+			   (ldB != ldC)){
+				System.out.println(" - escaleno!");
+			}
+			else{
+				if ((ldA == ldB) && (ldB != ldC) ||
+				    (ldA == ldC) && (ldC != ldB) ||
+				    (ldC == ldB) && (ldA != ldC)){
+					System.out.println(" - isoceles!");
+				}
+				else{
+					if((ldA == ldB) && 
+					   (ldA == ldC)){
+						System.out.println(" - equilatero!");
+					}
+				}	
+			}	
 		}
-		
-		// identificar se eh triangulo
-		
-		// se for triangulo
-			// ver se isoles
-			// ver se escaleno
-			// ver se equilatero
-				
-
+		else{
+			System.out.println("Lados fornecidos nao formam triangulo! ");
+		}	
 	}
-	
-
-
 }
+
