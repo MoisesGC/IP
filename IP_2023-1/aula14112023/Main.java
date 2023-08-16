@@ -13,7 +13,7 @@ public class Main{
 		leituraMotora = ler.nextFloat();
 		curuja01.setVelocidadeAferida(leituraMotora);
 		
-		curuja01.avaliaLeitura();
+		//curuja01.avaliaLeitura();
 	
 	}
 

@@ -17,6 +17,7 @@ public class CurujaDetran{
 	
 	public void setVelocidadeAferida(float novoValor){
 		this.velocidadeAferida = novoValor;
+		this.avaliaLeitura();
 	}
 	
 	public void avaliaLeitura(){
@@ -28,7 +29,18 @@ public class CurujaDetran{
 			System.out.println("Velocidade Ok!");
 		}
 		else{
-			System.out.println("Velocidade nOk!");
+			System.out.println("Velocidade acima do limite !");
+			if(deltaVel <= 20.0){
+				System.out.println("- multa de R$100,00!");
+			}
+			else{
+				if(deltaVel <= 40.0){
+					System.out.println("- multa de R$500,00!");
+				}
+				else{
+					System.out.println("- multa de R$1000,00 e apreensao da CNH!");
+				}			
+			}
 		
 		}
 	

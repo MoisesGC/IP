@@ -6,11 +6,13 @@ public class Main{
 		boolean condicao;
 		int temp;
 		
-		Scanner ler = new Scanner(System.in);
+		//Scanner ler = new Scanner(System.in);
 		
 		Triangulo myTrian = new Triangulo();
+		Quadrado myQuad = new Quadrado();
+		Circulo myCircle = new Circulo();
 		
-		System.out.print("Digite o tamanho do primeiro lado: " );
+		/*System.out.print("Digite o tamanho do primeiro lado: " );
 		temp = ler.nextInt();
 		myTrian.setLadoA(temp);
 		System.out.println();
@@ -25,7 +27,14 @@ public class Main{
 		myTrian.setLadoC(temp);
 		System.out.println();
 		
-		myTrian.identificaTriangulo();
+		myTrian.identificaTriangulo(); */
+		
+		myQuad.setLado(12);
+		myCircle.setRaio(12);
+		
+		System.out.println(myQuad.retornaArea());
+		System.out.println(myCircle.retornaArea());
+		System.out.println(myCircle.retornaCircunferencia());
 
 		
 	}
