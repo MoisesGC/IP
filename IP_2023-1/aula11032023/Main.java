@@ -9,7 +9,7 @@ public class Main{
 		//Scanner ler = new Scanner(System.in);
 		
 		Triangulo myTrian = new Triangulo();
-		Quadrado myQuad = new Quadrado();
+		Quadrado myQuad = new Quadrado(12);
 		Circulo myCircle = new Circulo();
 		
 		/*System.out.print("Digite o tamanho do primeiro lado: " );
@@ -29,7 +29,7 @@ public class Main{
 		
 		myTrian.identificaTriangulo(); */
 		
-		myQuad.setLado(12);
+		System.out.println(myQuad.retornaArea());
 		myCircle.setRaio(12);
 		
 		System.out.println(myQuad.retornaArea());

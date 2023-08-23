@@ -2,11 +2,16 @@ public class Quadrado{
 
 	private int lado;
 	
+	
+	Quadrado(int novoValor){
+		this.setLado(novoValor);
+	}
+	
 	public int getLado(){
 		return this.lado;
 	}
 	
-	public void setLado(int novoValor){
+	private void setLado(int novoValor){
 		this.lado = novoValor;
 	}
 	
