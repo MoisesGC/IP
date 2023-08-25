@@ -2,10 +2,12 @@ public class Carro{
 
 	private String modelo;
 	private Motor meuMotor;	
+	private float velocidade;
 	
 	Carro(String novoModelo, Motor novoMotor){
 		this.setModelo(novoModelo);
 		this.setMotor(novoMotor);
+		this.setVelocidade(0.0f);
 	}
 
 	public String getModelo(){
@@ -14,6 +16,14 @@ public class Carro{
 	
 	private void setModelo(String novoValor){
 		this.modelo = novoValor;
+	}
+
+	public float getVelocidade(){
+		return this.velocidade;
+	}
+	
+	private void setVelocidade(float novoValor){
+		this.velocidade = novoValor;
 	}
 
 	public Motor getMotor(){
@@ -36,66 +46,33 @@ public class Carro{
 		}	
 	}
 	
-	public static void main(String[] args){
-		System.out.println("Simulador de Carro!");
-		//Scanner ler = new Scanner(System.in);
-		
-		Motor diablito = new Motor("V8",250);
-		Carro fuscao = new Carro("Fusca 78", diablito);
-		
-		fuscao.ignicao();
-		fuscao.ignicao();
-		fuscao.ignicao();
-		fuscao.desligar();
-		fuscao.desligar();
-		fuscao.desligar();
-		
+	public void acelera(){
+		float temp;
+		if(this.getMotor().getEstado()){
+			temp = (float)this.getMotor().getPotencia()/(10.0f) + this.getVelocidade(); 
+			this.setVelocidade(temp);
+		}
+		this.imprimeVelocidade();
+	}
+
+	public void freia(){
+		float velAtual;
+		float capFrenagem = 10.0f;
+		velAtual = this.getVelocidade();
+		if( velAtual > capFrenagem ){
+			velAtual = velAtual - 10.0f;
+			this.setVelocidade(velAtual);
+		}
+		else{
+			this.setVelocidade(0.0f);
+		}
+		this.imprimeVelocidade();
+	}
+	
+	
+	public void imprimeVelocidade(){
+		System.out.println("Velocidade Atual:\t " + this.getVelocidade());
 	}
 	
 			
-}
-
-
-class Motor{
-	
-	private String modelo;
-	private int potencia;
-	private boolean estado;	
-	
-	Motor(String novoModelo, int novaPotencia){
-		this.setModelo(novoModelo);
-		this.setPotencia(novaPotencia);
-		this.setEstado(false);
-	}
-
-	public String getModelo(){
-		return this.modelo;
-	}
-	
-	private void setModelo(String novoValor){
-		this.modelo = novoValor;
-	}
-
-	public int getPotencia(){
-		return this.potencia;
-	}
-	
-	public void setPotencia(int novoValor){
-		this.potencia = novoValor;
-	}
-	
-	public boolean getEstado(){
-		return this.estado;
-	}
-	
-	public void setEstado(boolean novoValor){
-		this.estado = novoValor;
-		if (this.getEstado()){
-			System.out.println("VRRRRUUUMMMM");
-		}
-		else{
-			System.out.println("vrimm.......");
-		}
-	}	
-	
 }
