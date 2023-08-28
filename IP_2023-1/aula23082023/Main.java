@@ -12,14 +12,16 @@ public class Main{
 		Carro fuscao = new Carro("Fusca 78", diablito);
 		cont = 0;
 		leitura = 0;
-		while((cont < 10 )&&(leitura != 10)){
+		/*while((cont < 10 )&&(leitura != 10)){
 			System.out.println("no loop....digite um numero");
 			leitura = ler.nextInt();
 			cont = cont + 1;
 		}
 		System.out.println("Saiu do loop....");
-		
-		
+		*/
+		for(cont = 0; cont < 10; cont++){
+			System.out.println("Contando no para...." + cont);		
+		}
 		
 		
 		/*fuscao.ignicao();

@@ -8,7 +8,7 @@ public class Main{
         	Scanner ler = new Scanner(System.in);
 		
 		Calculo calc = new Calculo();
-		int a,b;
+		/*int a,b;
 		
 		a = ler.nextInt();
 		b = ler.nextInt();
@@ -18,7 +18,9 @@ public class Main{
 		calc.imprimeMultiplicacao(a,b);
 		calc.imprimeDivisao(a,b);
 		calc.imprimeConversaoCelToFareh(30.0f);
-	
+		*/
+		
+		calc.fazendoEstatisticasToya();
         
         }
 
