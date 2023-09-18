@@ -72,6 +72,34 @@ public class Vetor{
 		}
 	}
 	
+	
+	public void inicializaOrdem(int inicio){
+		int cont;
+		int valor;
+		for(cont = 0; cont < this.getTamanho(); cont++){
+			valor = inicio;	
+			this.setElemento(cont, valor);
+			inicio++;
+		}
+	}
+	
+	public void troca(int index1, int index2){
+		int temp;
+		temp = this.getElemento(index1); 
+      		this.setElemento(index1, this.getElemento(index2));  
+      		this.setElemento(index2,temp); 
+	}
+	
+	public void shuffle(){
+		int cont, ind1,ind2;
+		Random gerador = new Random();
+		for(cont = 0; cont < this.getTamanho(); cont++){
+			ind1 = gerador.nextInt(this.getTamanho());	
+			ind2 = gerador.nextInt(this.getTamanho());
+			this.troca(ind1,ind2);
+		}
+	}
+	
 	public boolean busca(int chave){
 		boolean achou;
 		int cont;
@@ -98,6 +126,47 @@ public class Vetor{
 		}		
 		return achou;
 	}
+	
+	
+	public int produtoInterno(Vetor vetA, Vetor vetB){
+		int cont,valor, prodInt;
+		prodInt = 0;
+		for(cont = 0; cont < vetA.getTamanho(); cont++){
+			valor = vetA.getElemento(cont) * vetB.getElemento(cont);
+			prodInt = prodInt + valor;
+		}
+		
+		return prodInt;
+	}
+
+	public int produtoInterno(Vetor vetA){
+		int prodInt;
+		prodInt = this.produtoInterno(this,vetA);
+		return prodInt;
+	}	
+	
+	public void copiaDe(Vetor destino, Vetor origem){
+		int cont,valor;
+		for(cont = 0; cont < destino.getTamanho(); cont++){
+			valor = origem.getElemento(cont);
+			destino.setElemento(cont, valor);
+		}
+	}
+	
+	
+	public void copiaDe(Vetor outro){
+		this.copiaDe(this, outro);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
 

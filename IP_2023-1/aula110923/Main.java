@@ -5,6 +5,28 @@ public class Main{
 	public static void main(String[] args){
 		System.out.println("Teste do Objeto Vetor");
         	Scanner ler = new Scanner(System.in);
+        	int resposta;
+        	
+        	Vetor vet1 = new Vetor(10);
+        	//Vetor vet2 = new Vetor(10);
+        	
+        	//System.out.println("Antes");
+        	vet1.inicializaOrdem(10);
+        	//vet1.imprime();
+        	//vet2.inicializa(3);
+        	//vet2.imprime();
+        	
+    		//resposta = vet1.produtoInterno(vet2);
+        	vet1.shuffle();
+        	//System.out.println(resposta);
+                vet1.imprime();
+        	//vet2.imprime();
+        	
+	}
+
+	public static void main3(String[] args){
+		System.out.println("Teste do Objeto Vetor");
+        	Scanner ler = new Scanner(System.in);
         	
         	Vetor vet = new Vetor(10);
         	
