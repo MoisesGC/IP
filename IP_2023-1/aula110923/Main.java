@@ -5,13 +5,35 @@ public class Main{
 	public static void main(String[] args){
 		System.out.println("Teste do Objeto Vetor");
         	Scanner ler = new Scanner(System.in);
+        	Calculo calc = new Calculo();
+        	Vetor vet1 = new Vetor(10);
+        	int resposta;
+        	
+        	
+        	resposta = calc.fatorial(0);
+        	System.out.println(resposta);
+        	resposta = calc.fatorial(1);
+        	System.out.println(resposta);
+        	resposta = calc.fatorial(5);
+        	System.out.println(resposta);
+        	vet1.inicializaRandom();
+       	vet1.imprimeRecursivo();
+       	vet1.imprime();
+        	
+        }	
+
+
+	public static void main4(String[] args){
+		System.out.println("Teste do Objeto Vetor");
+        	Scanner ler = new Scanner(System.in);
         	int resposta;
         	
         	Vetor vet1 = new Vetor(10);
         	//Vetor vet2 = new Vetor(10);
         	
         	//System.out.println("Antes");
-        	vet1.inicializaOrdem(10);
+        	//vet1.inicializaOrdem(-10);
+        	vet1.inicializaRandom();
         	//vet1.imprime();
         	//vet2.inicializa(3);
         	//vet2.imprime();
@@ -19,6 +41,15 @@ public class Main{
     		//resposta = vet1.produtoInterno(vet2);
         	vet1.shuffle();
         	//System.out.println(resposta);
+                vet1.imprime();
+                vet1.imprimeMenor();
+                vet1.arrumaMenor(2,6);
+                vet1.imprime();
+                vet1.arrumaMenor(0,5);
+                vet1.imprime();
+                vet1.arrumaMenor(5,9);
+                vet1.imprime();
+                vet1.ordena();
                 vet1.imprime();
         	//vet2.imprime();
         	

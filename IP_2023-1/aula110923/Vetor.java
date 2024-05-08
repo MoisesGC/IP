@@ -55,6 +55,22 @@ public class Vetor{
 		System.out.println();
 	}
 	
+	public void imprimeRecursivo(){
+		this.imprimeR(0);
+		System.out.println();
+	}
+	
+	private void imprimeR(int index){
+		if(index == (this.getTamanho()-1)){
+			System.out.print(" " + this.getElemento(index));
+		}
+		else{
+			this.imprimeR(index+1);
+			System.out.print(" " + this.getElemento(index));
+			//this.imprimeR(index+1);
+		}
+	}
+	
 	public void inicializa(int valor){
 		int cont;
 		for(cont = 0; cont < this.getTamanho(); cont++){	
@@ -159,8 +175,40 @@ public class Vetor{
 	}
 	
 	
+	public void imprimeMenor(){
+		int cont,indMenor;
+        	indMenor = 0;
+        	cont = 1;	
+        	while(cont < this.getTamanho()){
+        		if(this.getElemento(cont) < this.getElemento(indMenor)){
+        			indMenor = cont;
+        		}      		
+			cont++;
+        	}
+        	System.out.println(this.getElemento(indMenor));
+	}
+	
+	public void arrumaMenor(int indexInicio, int indexFinal){
+		int cont,indMenor;
+        	indMenor = indexInicio;
+        	cont = indexInicio + 1;	
+        	while(cont <= indexFinal){
+        		if(this.getElemento(cont) < this.getElemento(indMenor)){
+        			indMenor = cont;
+        		}      		
+			cont++;
+        	}
+        	this.troca(indexInicio,indMenor);	
+	}
 	
 	
+	public void ordena(){
+		int cont,indexMaior;
+		indexMaior = this.getTamanho()-1;
+		for(cont = 0; cont < indexMaior; cont++){
+			this.arrumaMenor(cont,indexMaior);		
+		}		
+	}
 	
 	
 	
