@@ -121,7 +121,61 @@ public class Triangulo{
 	}
 	
 	
+	public void identificaV3(){
+		int ldA,ldB,ldC;
+		String msgOk;
+		
+		ldA = this.getLadoA();
+		ldB = this.getLadoB();
+		ldC = this.getLadoC();
+		
+		msgOk = "Nao forma triangulo";
+		// identifica se forma triangulo
+		if(this.verificaDesigualdade()) {   
+			msgOk = "Tudo ok!";
+			if((ldA != ldB) && (ldB != ldC) && (ldC != ldA)){
+				System.out.println("Eh escaleno");
+			}
+			else{
+				if((ldA == ldB) && (ldB == ldC)){
+					System.out.println("Eh equilatero");
+				}
+				else{
+					System.out.println("Eh isoceles");
+				}				
+			}
+			
+		}
+		System.out.println(msgOk);		
+	}
 	
+	public char identificaV4(){
+		int ldA,ldB,ldC;
+		char resposta;
+		
+		ldA = this.getLadoA();
+		ldB = this.getLadoB();
+		ldC = this.getLadoC();
+		
+
+		resposta = '0'; // nao eh triangulo
+		// identifica se forma triangulo
+		if(this.verificaDesigualdade()) {   
+			if((ldA != ldB) && (ldB != ldC) && (ldC != ldA)){
+				resposta = '1'; // eh escaleno
+			}
+			else{
+				if((ldA == ldB) && (ldB == ldC)){
+					resposta = '2'; // eh equilatero
+				}
+				else{
+					resposta = '3'; // eh isoceles
+				}				
+			}
+			
+		}
+		return resposta;		
+	}
 	
 	
 	
