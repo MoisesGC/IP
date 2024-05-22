@@ -1,0 +1,60 @@
+
+
+
+
+
+  Entrada
+  
+     Leitura de 2 valores 
+     	 Velocidade Maxima da Rua
+     	 Velocidade Aferida do Veiculo
+     	 
+     Saida
+     
+     	Valor da Multa
+     	
+     		0    - se abaixo ou igual o valor maximo permitido
+     		200  - se acima da velocidade permitida ate 20% (incluso)
+     		500  - se acima de 20% da velocidade permitida ate 50% (incluso)
+     		2000 - se acima de 50% da velocidade maxima permitida
+    		
+     		
+    Algoritmo
+    
+    velMaxVia = 100;
+    velVeiculo = 80,100,120,140,150,200
+    
+    
+    SimuladorDoDetran(): float
+    Inicio
+    	float velMaxVia,velVeiculo,delta,multa;
+    
+    	leia(velMaxVia);
+    	leia(velVeiculo);
+    	delta = velVeiculo - velMaxVia;
+    	
+    	if(delta > 0){
+    		if(delta <= velMaxVia*(0.2)){
+    			multa = 200.0;
+    		}
+    		else{
+    			if(delta <= velMaxVia*(0.5)){
+    				multa = 500.0;
+    			}
+    			else{
+    				multa = 2000.0;
+    			}	
+    		}	
+    	}
+    	else{
+    		multa = 0.0;
+    	}
+    
+    	retorne multa;
+
+    Fim.
+    
+    
+    
+    
+    
