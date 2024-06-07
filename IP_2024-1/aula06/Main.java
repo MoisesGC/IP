@@ -5,7 +5,7 @@ public class Main{
 		
 		Numero num1;		
 		num1 = new Numero();		
-		num1.somaLeiturasV3();
+		num1.somaPrimos();
 			
 	}
 }
