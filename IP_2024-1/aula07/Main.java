@@ -6,22 +6,45 @@ public class Main{
 		
 		System.out.println("Usando o objeto vetor!");
 		int cont,chave;
-		boolean achou;
+		int chaveInd;
 		
+		Scanner entrada = new Scanner(System.in);
+			
 		Vetor listaNumero = new Vetor(5);
-		listaNumero.inicializaRandomico();
-	
-		chave = 5;
-		achou = listaNumero.buscaV2(chave);		
-		if(achou){
-			System.out.println("Estava presente na lista!");
+			
+		listaNumero.inicializaManual(entrada);
+		
+		listaNumero.imprimeEstatisticas();
+				
+				
+		/*chave = entrada.nextInt();
+		chaveInd = listaNumero.buscaV3(chave);		
+		if(chaveInd != -1){
+			System.out.println(chave + " estava presente na lista, no endereco "+chaveInd);
 		}
 		else{
 			System.out.println("Nao foi encontrado");
 		}
+		*/
 		
-		
+		entrada.close();	
 	}
 
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

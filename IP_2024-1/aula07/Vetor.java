@@ -63,6 +63,25 @@ public class Vetor{
 		return achou;
 	}
 	
+	public int buscaV3(int chave){
+		boolean achou;
+		int cont, chaveInd;
+		achou = false;
+		chaveInd = -1;
+		cont = 0;
+		while((cont < this.getTamanho()) && !achou){	
+			if (this.getElemento(cont) == chave){
+				achou = true;
+				chaveInd = cont;
+				
+			}		
+			cont++;
+		}
+		
+		return chaveInd;
+	}
+	
+	
 	public void inicializaComValor(int valor){
 		int cont;
 		for(cont = 0; cont < this.getTamanho(); cont++){
@@ -70,14 +89,12 @@ public class Vetor{
 		}
 	}
 	
-	public void inicializaManual(){
+	public void inicializaManual(Scanner ler){
 		int cont,entrada;
-		Scanner ler = new Scanner(System.in);
 		for(cont = 0; cont < this.getTamanho(); cont++){
 			entrada = ler.nextInt();
 			this.setElemento(cont,entrada);
 		}
-		ler.close();
 	}
 	
 	public void inicializaRandomico(){
@@ -89,6 +106,43 @@ public class Vetor{
 		}
 	}
 	
+	public void troca(int end1, int end2){
+		int valor1,valor2;		
+		valor2 = this.getElemento(end2);
+		valor1 = this.getElemento(end1);		
+		this.setElemento(end2,valor1);
+		this.setElemento(end1,valor2);
+
+	}
+	
+	public void imprimeEstatisticas(){	
+		int cont, maior, menor;
+		float media;	
+		maior = 0;
+		menor = 0;
+		media = 0.0f;
+		
+		maior = this.getElemento(0);
+		menor = this.getElemento(0);
+		media = (float)this.getElemento(0);
+		
+		
+		for(cont=1; cont < this.getTamanho(); cont++){
+			if(maior < this.getElemento(cont)){
+				maior = this.getElemento(cont);
+			}
+			if(menor >  this.getElemento(cont)){
+				menor = this.getElemento(cont);
+			}
+			media = media + this.getElemento(cont);
+		}
+		
+		media = media/(float)cont;
+		
+		System.out.println("O maior valor eh "+ maior 
+				  +"\nO menor valor eh "+ menor
+				  +"\nA media dos valores eh "+ media); 
+	}
 	
 	public void imprime(){
 		int cont;
