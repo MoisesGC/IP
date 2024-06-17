@@ -144,6 +144,23 @@ public class Vetor{
 				  +"\nA media dos valores eh "+ media); 
 	}
 	
+	public void trocaMaiorMenor(){	
+		int endMaior,endMenor,cont;	
+		endMaior = 0;
+		endMenor = 0;
+		for(cont=1; cont < this.getTamanho(); cont++){
+			if(this.getElemento(endMaior) < this.getElemento(cont)){
+				endMaior = cont;
+			}
+			if(this.getElemento(endMenor) >  this.getElemento(cont)){
+				endMenor = cont;
+			}
+		}		
+		this.troca(endMaior,endMenor);	
+	}
+	
+	
+	
 	public void imprime(){
 		int cont;
 		//System.out.println();

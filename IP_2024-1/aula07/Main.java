@@ -15,7 +15,10 @@ public class Main{
 		listaNumero.inicializaManual(entrada);
 		
 		listaNumero.imprimeEstatisticas();
-				
+		
+		listaNumero.trocaMaiorMenor();	
+		
+		listaNumero.imprime();	
 				
 		/*chave = entrada.nextInt();
 		chaveInd = listaNumero.buscaV3(chave);		
