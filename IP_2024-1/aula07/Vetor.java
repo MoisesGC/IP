@@ -97,6 +97,16 @@ public class Vetor{
 		}
 	}
 	
+	public void inicializaSerie(int inicio){
+		int cont;
+		float entrada;
+		entrada = inicio;
+		for(cont = 0; cont < this.getTamanho(); cont++){
+			this.setElemento(cont,entrada);
+			entrada++;
+		}
+	}
+	
 	public void inicializaRandomico(){
 		int cont;
 		float entrada;
@@ -159,6 +169,35 @@ public class Vetor{
 		}		
 		this.troca(endMaior,endMenor);	
 	}
+	
+	public void shuffle(){
+		int cont,ind1,ind2;
+		Random gerador = new Random();
+		for(cont = 0; cont < (this.getTamanho()*2); cont++){
+			ind1 = gerador.nextInt(this.getTamanho());
+			ind2 = gerador.nextInt(this.getTamanho());
+			this.troca(ind1,ind2);	
+		}
+	
+	}
+	
+	
+	public void ordenaBetaVersion(){
+		int endMenor,indInicio,cont;	
+		
+		for(indInicio = 0; indInicio < this.getTamanho()-1; indInicio++){
+			endMenor = indInicio;
+			for(cont= (indInicio+1); cont < this.getTamanho(); cont++){
+				if(this.getElemento(endMenor) >  this.getElemento(cont)){
+					endMenor = cont;
+				}
+			}
+					
+			this.troca(indInicio,endMenor);	
+		}	
+		
+	}
+	
 	
 	public float produtoInterno(){	
 		return this.produtoInterno(this, this);

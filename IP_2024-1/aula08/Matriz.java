@@ -56,6 +56,78 @@ public class Matriz{
 		}
 	}
 	
+	
+	public void multiplicaPorEscalar(int valor){
+		int contC,contL,entrada;
+		for(contL = 0; contL < this.getNumLinhas(); contL++){
+			for(contC = 0; contC < this.getNumColunas(); contC++){
+				entrada = this.getElemento(contL,contC) * valor;
+				this.setElemento(contL,contC,entrada);
+			}
+		}
+	}
+	
+	
+	public boolean busca(int chave){
+		int contC,contL;
+		boolean achou;
+		
+		achou = false;
+		
+		contL = 0;
+		while((contL < this.getNumLinhas()) && !achou ){
+			contC = 0;
+			while((contC < this.getNumColunas()) && !achou ){
+				if(this.getElemento(contL, contC) == chave){
+					achou = true;			
+				}
+				contC++;
+			}
+			contL++;
+		}
+		
+		return achou;	
+	}
+	
+	public void setIdentidade(){
+		int contC,contL,entrada;
+		for(contL = 0; contL < this.getNumLinhas(); contL++){
+			for(contC = 0; contC < this.getNumColunas(); contC++){
+				entrada = 0;
+				if(contC == contL){
+					entrada = 1;
+				}
+				this.setElemento(contL,contC,entrada);
+			}
+		}
+	}
+	
+	public boolean checkIdentidade(){
+		int contC,contL;
+		boolean ehIdent;	
+		ehIdent = true;	
+		contL = 0;
+		while((contL < this.getNumLinhas()) && ehIdent ){
+			contC = 0;
+			while((contC < this.getNumColunas()) && ehIdent ){
+				if(contC != contL){
+					if(this.getElemento(contL,contC) != 0){
+						ehIdent = false;
+					}					
+				}
+				else{
+					if(this.getElemento(contL,contC) != 1){
+						ehIdent = false;
+					}				
+				}							
+				contC++;
+			}
+			contL++;
+		}		
+		return ehIdent;	
+	}
+	
+	
 	public void imprime(){
 		int contC,contL;
 		for(contL = 0; contL < this.getNumLinhas(); contL++){
@@ -65,5 +137,17 @@ public class Matriz{
 			System.out.println();
 		}	
 	}
+	
+	public void imprimeTransposta(){
+		int contC,contL;
+		for(contC = 0; contC < this.getNumColunas(); contC++){
+			for(contL = 0; contL < this.getNumLinhas(); contL++){
+				System.out.print(" "+this.getElemento(contL,contC));
+			}
+			System.out.println();
+		}	
+	}
+	
+
 	
 }	

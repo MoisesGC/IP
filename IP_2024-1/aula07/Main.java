@@ -12,17 +12,25 @@ public class Main{
 		
 		Scanner entrada = new Scanner(System.in);
 			
-		Vetor vet01 = new Vetor(6);
-		Vetor vet02 = new Vetor(6);
-		Vetor vet03 = new Vetor(6);
+		Vetor vet01 = new Vetor(12);
+		//Vetor vet02 = new Vetor(6);
+		//Vetor vet03 = new Vetor(6);
+		
+		
+		vet01.inicializaSerie(5);
+		vet01.imprime();
+		vet01.shuffle();
+		vet01.imprime();
+		vet01.ordenaBetaVersion();
+		vet01.imprime();	
 			
-			
-		vet01.inicializaManual(entrada);
+		/*vet01.inicializaManual(entrada);
 		vet02.inicializaManual(entrada);
 					
 		vet01.imprime();
 		vet02.imprime();
 		
+		*/
 		/*prodInt = vet02.produtoInterno();
 		System.out.println("O produto interno dos vetores eh " + prodInt);
 		tamanhoVet = vet02.tamanho();	
@@ -55,12 +63,14 @@ public class Main{
 	
 	
 		1,1,2,1,2,1
-		1,1,1,0,1,1 */
+		1,1,1,0,1,1 
 		
 		similaridade = vet03.cosenoEntreVetores(vet01,vet02);
 		System.out.println("A similaridade entre os vetores eh " + similaridade);	
 				
 		entrada.close();	
+		*/
+		
 	}
 
 }
