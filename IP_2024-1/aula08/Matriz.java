@@ -15,7 +15,7 @@ public class Matriz{
 		this.setNumLinhas(numeroLinhas);
 		this.setNumColunas(numeroColunas);
 		mat = new int[this.getNumLinhas()][this.getNumColunas()];
-	}
+	}que recebe como parâmetro outro objeto do tipo Vetor.
 	
 	
 	public int getNumLinhas(){
@@ -147,6 +147,26 @@ public class Matriz{
 			System.out.println();
 		}	
 	}
+	
+	
+	public void multiplicaMatriz(Matriz matA, Matriz matB, Matriz matResp){
+		int contProdInt,contLinhaA,contColunaB;
+		int acum = 0;
+		for(contLinhaA = 0; contLinhaA < matA.getNumLinhas(); contLinhaA++){
+			for(contColunaB = 0; contColunaB < matB.getNumColunas(); contColunaB++){	
+				for(contProdInt = 0; contProdInt < matA.getNumColunas(); contProdInt++){
+					acum = acum + matA.getElemento(contLinhaA,contProdInt) * matB.getElemento(contProdInt,contColunaB);
+				}
+				matResp.setElemento(contLinhaA,contColunaB,acum);
+				acum = 0;
+			}
+		}			
+	}
+	
+	
+	
+	
+	
 	
 
 	
