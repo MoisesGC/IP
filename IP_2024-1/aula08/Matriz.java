@@ -15,7 +15,7 @@ public class Matriz{
 		this.setNumLinhas(numeroLinhas);
 		this.setNumColunas(numeroColunas);
 		mat = new int[this.getNumLinhas()][this.getNumColunas()];
-	}que recebe como parâmetro outro objeto do tipo Vetor.
+	}
 	
 	
 	public int getNumLinhas(){
@@ -162,12 +162,6 @@ public class Matriz{
 			}
 		}			
 	}
-	
-	
-	
-	
-	
-	
 
 	
 }	
